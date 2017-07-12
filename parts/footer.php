@@ -12,10 +12,11 @@
 									<p><?php echo $content->about ; ?></p>
 
 									<ul class="social-block">
-										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+
+										<li><a href="<?php echo $content->facebook ;?>"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="<?php echo $content->twitter ;?>"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="<?php echo $content->google ;?>"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="<?php echo $content->youtube ;?>"><i class="fa fa-youtube"></i></a></li>
 									</ul>
 								</div>
 							</div>
@@ -30,7 +31,7 @@
 								$most_viewed=Property::fetch(4,'views');
 								foreach($most_viewed as $trending_property) {
 									$pix=$trending_property->get_picture('sidebar_popular');
-									echo "				
+									echo "
 									<div class=\"most-viewed-property\">";
 									if(!empty($trending_property->pix)){
 										echo "<div class=\"image\">
@@ -48,7 +49,7 @@
 ";
 								}
 								?>
-						
+
 								</div>
 							</div>
 						</div>
@@ -61,7 +62,7 @@
 									<ul class="contact-info">
 									<?php
 									echo "<li class=\"phone\">";
-										
+
 									echo 	"<p>$content->phone</p>";
 									echo "	</li>
 										<li class=\"mail\">
@@ -86,7 +87,7 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAUcvZywDrn5TSC1C00n0M9JcdTnogYRFE"></script> 
+	<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAUcvZywDrn5TSC1C00n0M9JcdTnogYRFE"></script> -->
 	<script src="js/infobox.js"></script>
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>
