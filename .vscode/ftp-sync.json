@@ -1,0 +1,16 @@
+{
+    "remotePath": "./",
+    "host": "ftp://waws-prod-sn1-037.ftp.azurewebsites.windows.net",
+    "username": "jamesBlackman",
+    "password": "Paracl8t",
+    "port": 21,
+    "protocol": "ftp",
+    "uploadOnSave": false,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "ignore": [
+        "\\.vscode",
+        "\\.git"
+    ]
+}

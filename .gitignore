@@ -1,0 +1,12 @@
+#################
+## Eclipse
+#################
+/files/*.db
+*.db
+/files/*
+phpunit.xml
+composer.lock
+composer.phar
+/vendor/
+/reports/
+/nbproject/private/

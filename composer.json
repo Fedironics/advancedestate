@@ -1,0 +1,19 @@
+{
+    "name": "Real Estate",
+    "type": "Website",
+    "require": {
+        "coldume/imagecraft": "~1.0",
+        "facebook/graph-sdk": "^5.4",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "google/apiclient": "1.1.*",
+        "guzzlehttp/guzzle": "5.2.*"
+    },
+    "homepage": "http://advancedestate.azurewebsites.net",
+    "authors": [
+        {
+            "name": "Ekene Madunagu",
+            "email": "ekenemadunagu@gmail.com"
+        }
+    ],
+    "description": "A nice realestate property viewing website blah blah blah "
+}
