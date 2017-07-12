@@ -1,16 +1,10 @@
-<?php 
+<?php
 require_once("../includes/initialize.php");
 pre_format($_POST);
-function finish($message){
-	global $session;
-	echo $message;
-//	$session->message($message);
-//	pre_format($session->message());
-//	redirect_to("../");
-}
 if(!isset($_POST['post'])){
 	finish($e[2]." post");
 }
+
 
 //for logging in
 if($_POST['post']=='Login'){
@@ -43,103 +37,10 @@ $registered=User::make($_POST['first_name'],$_POST['last_name'],$_POST['email'],
 			$session->login($result);
 		}
 	}
-	
-	
+
+
 }
 
 pre_format($result);
 pre_format($session->message());
 $session->logged();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

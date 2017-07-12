@@ -14,7 +14,7 @@ require_once "parts/header.php";
 
 							<div>
 								<input name="location" class="filter-box-input js-input " type="text" value="" placeholder="Enter A Location" />
-							</div>							
+							</div>
 							<div class="select-box">
 								<input name="type-select" class="filter-box-input js-input no-select" type="text" readonly value="" placeholder="For sale" />
 								<ul>
@@ -46,7 +46,7 @@ require_once "parts/header.php";
 												?>
 								</ul>
 							</div>
-							<?php 
+							<?php
 							$places=DatabaseTable::get_table('property_non_boolean',4);
 							$no=count($places);
 							$count=0;
@@ -174,10 +174,9 @@ require_once "parts/header.php";
 			<!-- Listing Section -->
 			<section class="listing-section">
 				<div class="container">
-					<div class="section-header">
-						<h1>Recent Listed</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec viverra erat. Aenean elit tellus mattis quis maximus et malesuada congue velit</p>
-					</div>
+					<?php
+					_editable('recent');
+					 ?>
 				</div>
 
 				<div class="listing-items">
@@ -231,8 +230,8 @@ require_once "parts/header.php";
 						</div>";
 					}
 					?>
-				
-					
+
+
 					</div>
 				</div>
 			</section>
@@ -240,16 +239,14 @@ require_once "parts/header.php";
 			<!-- Most viewed Section -->
 			<section class="most-viewed-section">
 				<div class="container">
-					<div class="section-header">
-						<h1>Most viewed</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec viverra erat. Aenean elit tellus mattis quis maximus et malesuada congue velit</p>
-					</div>
-
+					<?php
+					_editable('most_viewed');
+					 ?>
 					<ul class="most-viewed-carousel most-viewed-items">
 					<?php
 					$most_viewed=Property::fetch(4,'views DESC');
 					$count=0;
-					
+
 					foreach($most_viewed as $high_view){
 						$pix=$high_view->get_picture('most_viewed');
 						$high_view->get_detail('property_non_boolean');
@@ -288,9 +285,9 @@ require_once "parts/header.php";
 							</div>";
 							if(is_even($count) || $count=($most_viewed_total-1))echo "</li>";
 
-								
+
 					}
-						
+
 
 ?>
 					</ul>
@@ -300,10 +297,9 @@ require_once "parts/header.php";
 			<!-- Agents Section -->
 			<section class="agents-section">
 				<div class="container">
-					<div class="section-header">
-						<h1>Our agents</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec viverra erat. Aenean elit tellus mattis quis maximus et malesuada congue velit</p>
-					</div>
+					<?php
+					_editable('agents');
+					 ?>
 
 					<div class="row">
 						<div class="col-md-10">
@@ -345,7 +341,7 @@ require_once "parts/header.php";
 
 
 								?>
-									
+
 								</ul>
 							</div>
 						</div>
@@ -373,14 +369,14 @@ require_once "parts/header.php";
 									<div class=\"col-sm-14\">
 										<div class=\"featured-agent-info\">
 											<p>$featured->about</p>
-							
+
 										</div>
 									</div>
 								</div>
 							</div>";
 
 						?>
-							
+
 						</div>
 					</div>
 				</div>
@@ -390,10 +386,9 @@ require_once "parts/header.php";
 			<section class="featured-bloposts-section">
 				<div class="bg-wrapper">
 					<div class="container">
-						<div class="section-header">
-							<h1>From Blog</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec viverra erat. Aenean elit tellus mattis quis maximus et malesuada congue velit</p>
-						</div>
+						<?php
+						_editable('blog');
+						 ?>
 
 						<div class="row row-fit-10">
 							<div class="col-md-12">

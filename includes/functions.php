@@ -7,7 +7,18 @@ function pre_format($object){
 $characters="a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,1,2,3,4,5,6,7,8,9,0";
 $char_array=  explode(',', $characters);
 
+function finish($message){
+	global $session;
+	echo $message;
+//	$session->message($message);
+//	pre_format($session->message());
+//	redirect_to("../");
+}
 
+ function sclean($string){
+	 # will attempt to clean mysql input quickly
+	 return $string;
+ }
 
 /**
 * @param <int> $length the length of the random string
@@ -44,7 +55,7 @@ function validator($email,$type){
 			return false;
 		}
 	}
-	
+
 }
 
 function humanTiming ($eventTime){
@@ -102,7 +113,7 @@ function humanTiming ($eventTime){
 			if ($marker) return $timesince;
 			$marker = 1;
 			$first = ", ";
-			
+
 		}
 		if($minutes=floor($totaldelay/60))
 				        {
@@ -124,9 +135,9 @@ function humanTiming ($eventTime){
 		}
 		$timesince.=" ago";
 		return $timesince;
-		
+
 	}
-	
+
 }
 function fetch_array($data){
 	if($data->num_rows==0){

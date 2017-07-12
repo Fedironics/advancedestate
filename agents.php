@@ -1,21 +1,22 @@
 <?php
 require_once("includes/initialize.php");
 require_once("parts/header.php");
-?>	
+?>
 			<!-- Agents Section -->
 			<section class="agents-section has-padding">
 				<div class="container">
 					<div class="section-header">
-						<h1>Our agents</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec viverra erat. Aenean elit tellus mattis quis maximus et malesuada congue velit</p>
+						<h1><?php $txt= Editable::name('agents') ;
+						echo ucwords($txt->screen)   ?></h1>
+						<p><?php echo $txt->contained ; ?></p>
 					</div>
 
 					<div class="row row-fit-10">
 					<?php
 					$agents=Agent::find_all();
 					foreach($agents as $agent){
-					
-						echo "				
+
+						echo "
 						<div class=\"col-md-12\">
 							<div class=\"agent fully-styled\">";
 
@@ -27,23 +28,23 @@ require_once("parts/header.php");
 								</div>";
 
 							}
-				
+
 							echo "	<h3><a href=\"agent.php?agent=$agent->id\">$agent->first_name $agent->last_name</a></h3>
 								<p class=\"position\">agent</p>
 
 								<p>$agent->about</p>
 
 								<ul class=\"social-block\">";
-							
+
 								echo $agent->show_social('<li>');
-							
+
 							echo "</ul>
 							</div>
 						</div>
 ";
 					}
 					?>
-		
+
 				</div>
 				</div>
 			</section>
@@ -58,7 +59,7 @@ require_once("parts/header.php");
 
 					<ul class="most-viewed-carousel most-viewed-items">
 					         <?php
-                        
+
                     $properties=    Property::fetch(10,'views');
                     foreach($properties as $property){
                         $property->get_details();
@@ -66,7 +67,7 @@ require_once("parts/header.php");
                     }
 					foreach($properties as $property){
 						if(!empty($property->pix)){
-						echo "						
+						echo "
 						<li class=\"item\">
 								<div class=\"most-viewed-item\">
 									<div class=\"item-cover\">
@@ -101,14 +102,13 @@ require_once("parts/header.php");
 							</div>
 						</li>
 ";
-}			
+}
 }
                     ?>
-				
+
 			</ul>
 				</div>
 			</section>
 		</div>
 <?php
 require_once("parts/footer.php");
-	

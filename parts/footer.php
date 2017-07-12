@@ -87,7 +87,7 @@
 	</div>
 
 	<!-- Scripts -->
-	<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAUcvZywDrn5TSC1C00n0M9JcdTnogYRFE"></script> -->
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAUcvZywDrn5TSC1C00n0M9JcdTnogYRFE"></script> 
 	<script src="js/infobox.js"></script>
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery-ui.js"></script>

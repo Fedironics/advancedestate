@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("includes/content.php");
 ?>
 <!DOCTYPE html>
@@ -12,16 +12,16 @@ require_once("includes/content.php");
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!-- Style CSS -->
-<link rel="stylesheet" href="../../../../maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
    <link rel="stylesheet" href="css/owl-carousel.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/lightbox.css" />
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/bxslider.css" />
     <link rel="stylesheet" href="css/nouislider.css" />
-<link rel="stylesheet" href="css/icomoon.css" /> 
-<link rel="stylesheet" href="css/icomoon.css" /> 
-   <link rel="stylesheet" href="css/screen.css" /> 
+<link rel="stylesheet" href="css/icomoon.css" />
+<link rel="stylesheet" href="css/icomoon.css" />
+   <link rel="stylesheet" href="css/screen.css" />
 </head>
 <body data-smooth-scroll="on" id="front-page">
 
@@ -42,7 +42,7 @@ require_once("includes/content.php");
     return false;
   };
   //for finding out if a user is logged into facebook
-  facebook_logged= function() {  
+  facebook_logged= function() {
 	  FB.getLoginStatus(function(response) {
 		  console.log(response.status);
       return response.status=='not_authorized';
@@ -69,7 +69,7 @@ require_once("includes/content.php");
 		<div class="preloader-content">
 			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
 				<g>
-					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#EB2625" points="52.346,69.705 24.321,69.531 67.362,98.879 
+					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#EB2625" points="52.346,69.705 24.321,69.531 67.362,98.879
 						91.266,98.879 	"/>
 					<rect x="9.856" y="44.682" fill-rule="evenodd" clip-rule="evenodd" fill="#F0494B" width="14.465" height="54.362"/>
 					<path fill-rule="evenodd" clip-rule="evenodd" fill="#A31B1F" d="M47.868,1.947c21.055,0,38.123,17.068,38.123,38.123
@@ -109,7 +109,7 @@ require_once("includes/content.php");
 			<div class="right-block">
 			<?php
 			if($session->logged()){
-				
+
 				$pix=$user->get_picture();
 	echo
 						"<div class=\"account-options\">
@@ -154,7 +154,7 @@ require_once("includes/content.php");
 		<?php
 		if($session->logged())
 		{
-			echo "				
+			echo "
 ";
 		}
 		else{
@@ -165,7 +165,7 @@ require_once("includes/content.php");
 					<div class=\"brand-wrapper\">
 						<img src=\"img/brand.png\" alt=\"login brand\" />
 					</div>
-					<form id=\"login-form\" action=\"?\" method=\"post\">
+					<form id=\"login-form\" action=\"process/accounts.php\" method=\"post\">
 						<input class=\"js-input\" name=\"email\" type=\"text\" placeholder=\"Email\" />
 						<input class=\"js-input\" name=\"password\" type=\"password\" placeholder=\"Password\" />
 						<input type=\"submit\" value=\"Login\" name=\"post\" class=\"submit-button\" />
@@ -197,4 +197,3 @@ require_once("includes/content.php");
 
 		}
 		?>
-		

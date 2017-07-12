@@ -1,42 +1,42 @@
 <?php
 class File extends DatabaseTable {
 	//I	mportant please do not change or delete the types array
-				//D	O LATER
-				//c	heck for extra large files in process to stop the crashing from happening
-			public static $types=['video'=>['flv','mp4','3gp','avi'],'song'=>['mp3','ogg','wma'],'picture'=>['jpg','jpeg','gif','png'],'document'=>['pdf','doc','docx','txt']];
+	//D	O LATER
+	//c	heck for extra large files in process to stop the crashing from happening
+	public static $types=['video'=>['flv','mp4','3gp','avi'],'song'=>['mp3','ogg','wma'],'picture'=>['jpg','jpeg','gif','png'],'document'=>['pdf','doc','docx','txt']];
 	public static $tableName = 'files';
 	public static $folder = 'files';
 	public $errors = [];
 	public static $uploadErrors= array(
-		     UPLOAD_ERR_OK => "No Errors",
-		       UPLOAD_ERR_INI_SIZE => " File Is Larger Than The Upload Max Size",
-		        UPLOAD_ERR_FORM_SIZE => "File Is Larger Than Form, Max_Size",
-		        UPLOAD_ERR_PARTIAL => "The File Upload Didn't Complete",
-		       UPLOAD_ERR_NO_FILE => "No File Was Uploaded",
-		        UPLOAD_ERR_NO_TMP_DIR => "This Server Has No Temporary Directory",
-		        UPLOAD_ERR_CANT_WRITE => "Disk May Be Full Or You Don't Have The Permission To Upload Files",
-		        UPLOAD_ERR_EXTENSION => "This Type Of File Cannot Be Uploaded"
-		            );
-	
-	
-	
-	
+		UPLOAD_ERR_OK => "No Errors",
+		UPLOAD_ERR_INI_SIZE => " File Is Larger Than The Upload Max Size",
+		UPLOAD_ERR_FORM_SIZE => "File Is Larger Than Form, Max_Size",
+		UPLOAD_ERR_PARTIAL => "The File Upload Didn't Complete",
+		UPLOAD_ERR_NO_FILE => "No File Was Uploaded",
+		UPLOAD_ERR_NO_TMP_DIR => "This Server Has No Temporary Directory",
+		UPLOAD_ERR_CANT_WRITE => "Disk May Be Full Or You Don't Have The Permission To Upload Files",
+		UPLOAD_ERR_EXTENSION => "This Type Of File Cannot Be Uploaded"
+	);
+
+
+
+
 	public static function make($uploaded_file,$caller,$rel_id,$type=''){
 		$file= new static();
 		if(!empty($uploaded_file)){
 			if(is_array($uploaded_file)){
-			if($uploaded_file['name']==''){
-				$file->errors[]='file has no name';
-				return $file;
-			}
-			elseif($uploaded_file['error']!==0){
-				$file->errors[]=static::$uploadErrors[$uploaded_file['error']];
-				return $file;
-			}
-			$tmp=$uploaded_file['tmp_name'];
-			$ext=trim(pathinfo($uploaded_file['name'],PATHINFO_EXTENSION));
-			$basename=basename($uploaded_file['name']);
-			$size=$uploaded_file['size'];
+				if($uploaded_file['name']==''){
+					$file->errors[]='file has no name';
+					return $file;
+				}
+				elseif($uploaded_file['error']!==0){
+					$file->errors[]=static::$uploadErrors[$uploaded_file['error']];
+					return $file;
+				}
+				$tmp=$uploaded_file['tmp_name'];
+				$ext=trim(pathinfo($uploaded_file['name'],PATHINFO_EXTENSION));
+				$basename=basename($uploaded_file['name']);
+				$size=$uploaded_file['size'];
 			}
 			else {
 				$tmp=$uploaded_file;
@@ -88,7 +88,7 @@ class File extends DatabaseTable {
 		$sql.=empty($order)?'':" ORDER BY $order";
 		$sql.=empty($limit)?'':" LIMIT $limit";
 		return $sql;
-		
+
 	}
 	public static function  find_by_sql($sql,$thumb_sizes=[],$all=false){
 		global $database;
@@ -108,14 +108,14 @@ class File extends DatabaseTable {
 			$instance= new static();
 		}
 		foreach($thumb_sizes as $type=>$value){
-			$instance->$type=static::$folder.'/'.trim($record['type']).'/'.$type.trim($record['url']).'.'.$record['extension'];			
+			$instance->$type=static::$folder.'/'.trim($record['type']).'/'.$type.trim($record['url']).'.'.$record['extension'];
 		}
 		return $instance;
 	}
 	public function urls($thumb_sizes){
 		foreach($thumb_sizes as $type=>$value){
 			$this->$type=static::$folder.'/'.trim($this->type).'/'.$type.trim($this->url).'.'.$this->extension;
-			
+
 		}
 	}
 	public function move(){
@@ -134,8 +134,8 @@ class File extends DatabaseTable {
 			else {
 				$file->errors[]='unable to move file ';
 			}
-			
-			
+
+
 		}
 		else {
 			$this->errors='unrecognised filetype';
@@ -145,10 +145,10 @@ class File extends DatabaseTable {
 		require_once SIMPLE_IMAGE;
 		$picture=new EditImage($this->tmp);
 		if(is_array(current($pictures))){
-		foreach($pictures as $key=>$value){
-			$picture->square_crop($value[0],$value[1]);
-			$picture->save($this->target($key));
-		}
+			foreach($pictures as $key=>$value){
+				$picture->square_crop($value[0],$value[1]);
+				$picture->save($this->target($key));
+			}
 		}
 		else {
 			$picture->square_crop($pictures[0],$pictures[1]);
@@ -173,4 +173,3 @@ class File extends DatabaseTable {
 		}
 	}
 }
-

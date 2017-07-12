@@ -6,15 +6,15 @@ require_once 'user.php';
 
 /**
 @Description of session
- *
- * @author EMMA
- */
+*
+* @author EKENE
+*/
 class Session {
 	private $_logged_in=false;
 	private $_token;
 	private $_user_id;
 	public $message=array();
-	
+
 	function __construct() {
 		session_start();
 		$this->_check_message();
@@ -23,7 +23,7 @@ class Session {
 	public function get_user_id(){
 		return $this->_user_id;
 	}
-	
+
 	public function  logged(){
 		return $this->_logged_in;
 	}
@@ -40,7 +40,7 @@ class Session {
 		if(!empty($mssg)){
 			if(is_array($mssg)){
 				$this->message= $_SESSION['message']= array_merge($this->message,$mssg);
-				
+
 			}
 			else{
 				$_SESSION['message'][]=$mssg;
@@ -58,12 +58,12 @@ class Session {
 		$messages=  $this->message;
 		foreach ($messages as $message){
 			echo '  <div class="alert alert-warning">
-<span class="glyphicon glyphicon-ok "></span> &nbsp;
-'.$message.' 
-    </div>';
+			<span class="glyphicon glyphicon-ok "></span> &nbsp;
+			'.$message.'
+			</div>';
 		}
 	}
-	
+
 	public function login($user,$cookie=false){
 		if($user){
 			if(empty($user->token)){
@@ -82,27 +82,27 @@ class Session {
 			$this->message("Successfully Logged in!");
 			return true;
 		}
-		
+
 		else{
 			//d			o something if no user object was recieved
-									$this->logout();
+			$this->logout();
 			$this->message("Wrong username or password");
 			return false;
 		}
-		
+
 	}
-	
-	
+
+
 	public  function logout(){
 		if(isset($_SESSION['token']))
-							unset($_SESSION['token']);
+		unset($_SESSION['token']);
 		$this->_user_id=null;
 		$this->_logged_in=false;
-		if(isset($_COOKIE['token'])) 
-						setcookie('token',"$user->token",time()-2000);
+		if(isset($_COOKIE['token']))
+		setcookie('token',"$user->token",time()-2000);
 	}
 	private function _check_login()
-				    {
+	{
 		if(isset($_COOKIE['token']) || isset($_SESSION['token'])){
 			$this->_token=empty($_COOKIE['token'])?$_SESSION['token']:$_COOKIE['token'];
 			$res= User::verify($this->_token);
@@ -111,16 +111,16 @@ class Session {
 				$this->_user_id=$res->id;
 			}
 			else{
-				$this->logout();
+			#	$this->logout();
 			}
 		}
 		else{
 			$this->_logged_in=false;
 		}
-		
+
 	}
 	public function get_user(){
-		
+
 	}
 	function __destruct() {
 		// 		require SITE_ROOT.DS.'pages/footer.php';
