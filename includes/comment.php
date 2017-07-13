@@ -26,7 +26,7 @@ class Comment extends DatabaseTable {
             $comment->rel_class=$item_type;
             $comment->person_id=$session->logged()?$session->get_user_id():0;
             $comment->save();
-            return $comment;            
+            return $comment;
         }   else {
             return false;
         }
@@ -38,9 +38,10 @@ class Comment extends DatabaseTable {
         $sql .= " AND rel_class='". $database->escape_value($item_type)."'";
         return static::find_by_sql($sql);
     }
-    public static  function count_comments($item_id){
+    public static  function count_comments($item_type,$item_id){
         global $database;
-        $sql= "SELECT COUNT(*) FROM ".static::$tableName . " WHERE item_id=".$item_id ;
+        $sql= "SELECT COUNT(*) FROM ".static::$tableName . " WHERE item_id=".$item_id;
+        $sql.= " AND rel_class='".$database->escape_value($item_type)."'";
         $count=    $database->query($sql);
         $comment_count_array=$count->fetch_array();
         return array_shift($comment_count_array);
