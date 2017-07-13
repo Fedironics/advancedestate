@@ -132,4 +132,31 @@ class Item extends DatabaseTable {
     return $category;
 
   }
+  public function get_picture($size='',$limit=1,$order='id',$where="type='picture'",$all=false){
+    if(!isset($this->id))return false;
+    $pictures=File::fetch(self::class,static::$thumb_sizes,$all=false,$this->id,$limit,$order,$where);
+
+    if(empty($pictures)){
+      if($limit==1){
+        $pictures= $this->avatar;
+
+      }
+      else {
+        $pictures= [];
+        $pix=new stdClass();
+        foreach(static::$thumb_sizes as $type=>$value){
+          $pix->$type=$this->avatar;
+        }
+        $pictures[]=$pix;
+      }
+    }
+    else {
+      if($limit==1) {
+        $this->pix=$pictures=array_shift($pictures);
+        return empty($size)?$pictures:$pictures->$size;
+      }
+    }
+    $this->pix=$pictures;
+    return $pictures;
+  }
 }

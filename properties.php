@@ -5,7 +5,7 @@ if(!empty($_POST)){
 }
 require_once("parts/header.php");
 ?>
-		
+
 			<!-- Filter Section -->
 			<section class="properties-filters">
 				<div class="container">
@@ -21,7 +21,7 @@ require_once("parts/header.php");
 										<!-- Filter Block Items -->
 										<div class="filter-block-item city">
 											<div class="select-box type-2">
-											<input type="hidden" name="city" class="value" readonly /> 
+											<input type="hidden" name="city" class="value" readonly />
 												<input class="js-input no-select" type="text" readonly value="" placeholder="All cities" />
 												<ul>
 												<?php
@@ -31,7 +31,7 @@ require_once("parts/header.php");
 												}
 
 												?>
-												
+
 												</ul>
 											</div>
 										</div>
@@ -50,10 +50,10 @@ require_once("parts/header.php");
 										</div>
 
 										<div class="filter-block-item nr-filters">
-										<?php 
+										<?php
 										$places=DatabaseTable::get_table('property_non_boolean',4);
 										foreach($places as $place){
-											
+
 											if($place->code_name=='area')continue;
 											echo "
 											<div class=\"nr-filter\">
@@ -64,8 +64,8 @@ require_once("parts/header.php");
 													<span class=\"action add\">+</span>
 												</div>
 											</div>";
-										}										
-										
+										}
+
 										?>
 										</div>
 									</div>
@@ -205,13 +205,13 @@ require_once("parts/header.php");
 
 						<div class="ajax-target">
                         <?php
-                        
+
                     $properties=Property::fetch(1);
-                    
-					foreach($properties as $property){					
+
+					foreach($properties as $property){
                         $property->get_details();
 						$property->get_picture();
-							echo "						
+							echo "
 						<div class=\"col-md-8 col-sm-12\">
 								<div class=\"most-viewed-item\">
 									<div class=\"item-cover\">
@@ -250,27 +250,14 @@ require_once("parts/header.php");
                     ?>
 						</div>
 					</div>
-
+					<!-- Pagination -->
 					<?php
 					$pagin= new Pagination(1,2);
 					echo $pagin->show_next();
 					?>
 
-					<!-- Pagination -->
-					<ul class="page-numbers">
-						<li>
-							<a href="#" class="page-numbers">1</a>
-						</li>
-						<li>
-							<a href="#" class="page-numbers">2</a>
-						</li>
-						<li>
-							<span class="page-numbers current">3</span>
-						</li>
-						<li>
-							<a href="#" class="page-numbers next">Next</a>
-						</li>
-					</ul>
+
+
 				</div>
 			</section>
 		</div>

@@ -1,4 +1,4 @@
-				<div class="col-md-7 col-lg-7 col-lg-offset-1">
+				<div class="col-md-7 <?php echo $def; ?>">
 							<div class="sidebar">
 								<div class="sidebar-widgets">
 									<div class="row isotope-container">
@@ -164,4 +164,3 @@
 								</div>
 							</div>
 						</div>
-			

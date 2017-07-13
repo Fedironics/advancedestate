@@ -12,6 +12,9 @@ require_once "parts/header.php";
 					<?php
 					$blogposts = Blog::find_all();
 					foreach ($blogposts as $blogpost) :
+						$author= User::find_by_id($blogpost->author_id);
+						$author_pix= $author->get_picture('author_small');
+						$blog_pix = $blogpost->get_picture('featured_post');
 						?>
 
 
@@ -21,20 +24,20 @@ require_once "parts/header.php";
 								<div class="post-body">
 									<div class="blog-post-meta">
 										<div class="post-cover">
-											<a href="blogpost.html">
-												<img src="img/featured-post-1.jpg" alt="featured blogpost cover" />
+											<a href="<?php echo $blogpost->link(); ?>">
+												<img src="<?php echo $blog_pix;?>" alt="featured blogpost cover" />
 											</a>
 										</div>
 
 										<div class="post-author">
 											<div class="image">
-												<img src="img/blog-author-1.jpg" alt="blog author" />
+												<img src="<?php echo $author_pix; ?>" alt="<?php echo $author->name(); ?> blog author" />
 											</div>
 
-											<p>Robert Doe</p>
+											<p><?php echo $author->name(); ?></p>
 										</div>
 									</div>
-									<h2 class="post-title"><a href="<?php echo $blogpost->link(); ?>"><?php echo $blogpost->title ; ?></a></h2>
+									<h2 class="post-title"><a href="<?php echo $blogpost->link(); ?>"><?php echo ucwords($blogpost->title) ; ?></a></h2>
 
 									<p><?php echo $blogpost->body ; ?> </p>
 
@@ -53,20 +56,10 @@ require_once "parts/header.php";
 				</div>
 
 				<!-- Pagination -->
-				<ul class="page-numbers inverted">
-					<li>
-						<a href="#" class="page-numbers">1</a>
-					</li>
-					<li>
-						<a href="#" class="page-numbers">2</a>
-					</li>
-					<li>
-						<span class="page-numbers current">3</span>
-					</li>
-					<li>
-						<a href="#" class="page-numbers next">Next</a>
-					</li>
-				</ul>
+				<?php
+				$pagin= new Pagination(1,2);
+				echo $pagin->show_next();
+				?>
 			</div>
 		</div>
 
@@ -318,150 +311,5 @@ require_once "parts/header.php";
 </section>
 </div>
 
-<!-- Footer -->
-<footer>
-	<div class="container">
-		<div class="footer-widgets">
-			<div class="row">
-				<div class="col-md-9">
-					<div class="footer-widget widget_info">
-						<div class="widget-body">
-							<img src="img/logo.png" alt="realtor logo" />
-
-							<p>Duis vel eros mi. Nunc eu sem dolor. Nulla venenatis, augue at rhoncus tincidunt, nisi dolor fringilla nibh, sed tristique quam leo vel arcu. Sed ultricies, odio vel aliquet ultricies, turpis ipsum ultrices massa, vitae pulvinar nibh erat</p>
-
-							<ul class="social-block">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-9">
-					<div class="footer-widget widget_most_viewed">
-						<h4 class="widget-title">Most viewed</h4>
-
-						<div class="widget-body">
-							<div class="most-viewed-property">
-								<div class="image">
-									<a href="single.html">
-										<img src="img/most-viewed-prop-1.jpg" alt="most viewed" />
-									</a>
-								</div>
-								<h2><a href="single.html">Grand hotel</a></h2>
-								<p class="price">$450</p>
-								<ul class="rating">
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star-o"></i></li>
-									<li><i class="fa fa-star-o"></i></li>
-								</ul>
-							</div>
-
-							<div class="most-viewed-property">
-								<div class="image">
-									<a href="single.html">
-										<img src="img/most-viewed-prop-2.jpg" alt="most viewed" />
-									</a>
-								</div>
-								<h2><a href="single.html">Golden vip room</a></h2>
-								<p class="price">$450</p>
-								<ul class="rating">
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star-o"></i></li>
-									<li><i class="fa fa-star-o"></i></li>
-								</ul>
-							</div>
-
-							<div class="most-viewed-property">
-								<div class="image">
-									<a href="single.html">
-										<img src="img/most-viewed-prop-1.jpg" alt="most viewed" />
-									</a>
-								</div>
-								<h2><a href="single.html">Grand hotel</a></h2>
-								<p class="price">$450</p>
-								<ul class="rating">
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star-o"></i></li>
-									<li><i class="fa fa-star-o"></i></li>
-								</ul>
-							</div>
-
-							<div class="most-viewed-property">
-								<div class="image">
-									<a href="single.html">
-										<img src="img/most-viewed-prop-2.jpg" alt="most viewed" />
-									</a>
-								</div>
-								<h2><a href="single.html">Golden vip room</a></h2>
-								<p class="price">$450</p>
-								<ul class="rating">
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-									<li><i class="fa fa-star"></i></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<div class="footer-widget widget_contact">
-						<h4 class="widget-title">Contact info</h4>
-
-						<div class="widget-body">
-							<ul class="contact-info">
-								<li class="phone">
-									<p>012 125 856 587</p>
-								</li>
-								<li class="mail">
-									<p><a href="#">Info@realtor.com</a></p>
-								</li>
-								<li class="location">
-									<p>Realtor office<br />22 Pink Road<br />Holliday city, La 2211</p>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="copyrigts">
-			<p>Copyrights 2015. Designed by <a href="https://www.teslathemes.com/" target="blank">TeslaThemes</a></p>
-		</div>
-	</div>
-</footer>
-</div>
-
-<!-- Scripts -->
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="js/infobox.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/bxslider.js"></script>
-<script src="js/marquee.js"></script>
-<script src="js/nouislider.js"></script>
-<script src="js/modernizr.js"></script>
-<script src="js/imagesloaded.js"></script>
-<script src="js/smooth-scroll.js"></script>
-<script src="js/owl-carousel.js"></script>
-<script src="js/isotope.js"></script>
-<script src="js/theia.js"></script>
-<script src="js/lightbox.js"></script>
-<script src="js/options.js"></script>
-</body>
-
-<!-- Mirrored from teslathemes.com/demo/html/realtor/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2016 03:25:04 GMT -->
-</html>
+<?php
+require_once("parts/footer.php");

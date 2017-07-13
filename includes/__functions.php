@@ -13,3 +13,6 @@ function _editable($name){
     </div>
 ";
 }
+function _sidebar($def="col-lg-7 col-lg-offset-1"){
+ require_once(__DIR__. "..".DS."parts".DS."sidebar.php");
+}

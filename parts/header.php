@@ -101,7 +101,7 @@ require_once("includes/content.php");
 					</li>
 					<li class="property"><a href="single-full-width.html">Property</a></li>
 					<li class="agents"><a href="agents.php">Agents</a></li>
-					<li class="blog"><a href="blog.html">Blog</a></li>
+					<li class="blog"><a href="blog.php">Blog</a></li>
 					<li class="error"><a href="404.html">404 Page</a></li>
 				</ul>
 			</nav>
