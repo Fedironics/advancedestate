@@ -1,7 +1,7 @@
 <?php
 require_once("includes/initialize.php");
 require_once("parts/header.php");
-$page = new Pagination(1,Agent::count_all());
+$page = new Pagination(1,Agent::last_count());
 ?>
 <!-- Agents Section -->
 <section class="agents-section has-padding">
@@ -14,7 +14,7 @@ $page = new Pagination(1,Agent::count_all());
 
 		<div class="row row-fit-10">
 			<?php
-			$agents=Agent::select($page->per_page);
+			$agents=Agent::select($page->limit());
 			foreach($agents as $agent){
 
 				echo "
@@ -49,7 +49,9 @@ $page = new Pagination(1,Agent::count_all());
 		</div>
 	</div>
 </section>
-
+<?php
+echo $page->show_next();
+?>
 <!-- Most viewed Section -->
 <section class="most-viewed-section">
 	<div class="container">

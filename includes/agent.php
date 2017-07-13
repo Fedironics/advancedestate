@@ -21,7 +21,7 @@ class Agent extends User {
 		return $result;
 		
 	}
-	private static function _gen_fetch_sql($limit,$order,$where){
+	public static function _gen_fetch_sql($limit,$order,$where){
 		$sql=static::$base_sql;
 		$sql.=empty($where)?'':" WHERE $where";
 		$sql.=empty($order)?'':" ORDER BY $order";

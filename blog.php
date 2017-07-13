@@ -1,6 +1,7 @@
 <?php
 require_once "includes/initialize.php";
 require_once "parts/header.php";
+$page = new pagination(2,Blog::last_count());
 ?>
 
 <!--  Blog Section -->
@@ -10,7 +11,7 @@ require_once "parts/header.php";
 			<div class="blog-content">
 				<div class="row row-fit-10">
 					<?php
-					$blogposts = Blog::find_all();
+					$blogposts = Blog::select($page->limit());
 					foreach ($blogposts as $blogpost) :
 						$author= User::find_by_id($blogpost->author_id);
 						$author_pix= $author->get_picture('author_small');
@@ -57,8 +58,7 @@ require_once "parts/header.php";
 
 				<!-- Pagination -->
 				<?php
-				$pagin= new Pagination(1,2);
-				echo $pagin->show_next();
+				echo $page->show_next();
 				?>
 			</div>
 		</div>
