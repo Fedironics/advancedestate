@@ -1,6 +1,7 @@
 <?php
 require_once("includes/initialize.php");
 require_once("parts/header.php");
+$page = new Pagination(1,Agent::count_all());
 ?>
 <!-- Agents Section -->
 <section class="agents-section has-padding">
@@ -13,7 +14,7 @@ require_once("parts/header.php");
 
 		<div class="row row-fit-10">
 			<?php
-			$agents=Agent::find_all();
+			$agents=Agent::select($page->per_page);
 			foreach($agents as $agent){
 
 				echo "
@@ -92,7 +93,9 @@ require_once("parts/header.php");
 					<h3>
 					<a href=\"".$property->link().".\">$property->name</a>
 					</h3>
-					<p>LA 325</p>
+					<p>";
+					echo $property->code_name();
+					echo "</p>
 
 					<span class=\"price\">\$$property->price</span>
 					</div>
