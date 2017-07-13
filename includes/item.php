@@ -43,10 +43,12 @@ class Item extends DatabaseTable {
   }
 
   public function comments(){
-    return Comment::find_on($this->id);
+    #gets comments from the comment class
+    return Comment::find_on(__CLASS__,$this->id);
   }
   public function count_comments(){
-    return Comment::count_comments($this->id);
+    #counts comments from the comment class
+    return Comment::count_comments(__CLASS__,$this->id);
   }
 
   public function attatch_file($file) {
