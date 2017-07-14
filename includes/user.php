@@ -13,8 +13,8 @@ class User extends DatabaseTable {
 	protected static $db_fields;
 	public static $tableName= 'person';
 	public static $thumb_sizes = ['large'=>[550,526],'featured'=>[308,308],'list'=>[127,127],'author'=>[66,66],'author_small'=>[43,43]];
-	
-	
+
+
 	public static function authenticate($email,$password){
 		global $database;
 		$email=$database->escape_value($email);
@@ -31,7 +31,7 @@ class User extends DatabaseTable {
 		else {
 			return false;
 		}
-		
+
 	}
 	public static function social_authenticate($email,$sid,$network){
 		global $database;
@@ -93,8 +93,8 @@ class User extends DatabaseTable {
 			return $created;
 		}
 		pre_format($errors);
-		
-		
+
+
 	}
 	public static function filter($value){
 		global $database;
@@ -106,7 +106,7 @@ class User extends DatabaseTable {
 		$file=File::make($name,self::class,$this->id,'picture');
 		return $file;
 	}
-	
+
 	public function get_picture($size='',$limit=1,$order='added',$where="type='picture'",$all=false){
 		if(!isset($this->id))return false;
 		$pictures=File::fetch(self::class,static::$thumb_sizes,$all=false,$this->id,$limit,$order,$where);
@@ -119,7 +119,7 @@ class User extends DatabaseTable {
 			return $this->pix->$size;
 		}
 	}
-	
+
 	public function count_pictures($where=''){
 		if(!isset($this->id))return false;
 		$num=File::count(self::class,$this->id,$where);
@@ -133,7 +133,7 @@ class User extends DatabaseTable {
 	}
 	public function twitter(){
 		return "ashortlink";
-		
+
 	}
 	public function facebook(){
 		return "ashortlink";
@@ -163,5 +163,8 @@ class User extends DatabaseTable {
 		$result.=  "$start
 	<a href=\"".$this->linkedin()."\"><i class=\"fa fa-google-plus\"></i></a> $stop";
 		return $result;
+	}
+	public function details(){
+		return "Quisque tristique sapien enim, sit amet aliquam mi mollis et. Proin at turpis vel libero cursus ullamcorper sit amet luctus quam. Vestibulum dictum nisl orci. Duis pretium, ipsum vitae suscipit interdum, justo dui dapibus diam, id dapibus lorem ipsum eu sem. Pellentesque in porttitor lectus.";
 	}
 }

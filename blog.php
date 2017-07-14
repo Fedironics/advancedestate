@@ -1,7 +1,7 @@
 <?php
 require_once "includes/initialize.php";
 require_once "parts/header.php";
-$page = new pagination(2,Blog::last_count());
+$page = new pagination(8,Blog::last_count());
 ?>
 
 <!--  Blog Section -->
@@ -44,7 +44,7 @@ $page = new pagination(2,Blog::last_count());
 
 									<div class="post-meta">
 										<ul class="meta">
-											<li class="date"><?php echo $blogpost->added ; ?></li>
+											<li class="date"><?php echo $blogpost->time() ; ?></li>
 											<li class="comments"><?php echo $blogpost->count_comments() ; ?></li>
 										</ul>
 
