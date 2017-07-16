@@ -20,10 +20,10 @@ class Pagination{
   public function limit(){
     return $this->offset() . ",". $this->per_page;
   }
-  public function url($key,$value){
+  public static function url($key,$value,$base_link = ""){
     $passed_params=$_GET;
     $passed_params[$key]=$value;
-    $base_link = $_SERVER["PHP_SELF"];
+    $base_link= empty($base_link)?$_SERVER['PHP_SELF']:$base_link;
     $addition = [];
     foreach ($passed_params as $key => $value) {
       $addition[]= "$key=$value" ;
@@ -33,13 +33,13 @@ class Pagination{
   }
   public function offset(){
     return ($this->page-1)*$this->per_page;
-  
+
   }
   public function next(){
-    return $this->url('page',$this->page+1);
+    return static::url('page',$this->page+1);
   }
   public function prev() {
-    return $this->url('page',$this->page-1);
+    return static::url('page',$this->page-1);
   }
   public function has_next() {
     return $this->next<=$this->page_count() ? true : false;
@@ -66,7 +66,7 @@ class Pagination{
         continue;
       }
       if($curr_page<=$this->page_count() && $curr_page>=1){
-        $navigation.= "<li><a class=\"page-numbers\" href=\"".$this->url('page',$curr_page)."\">$curr_page</a></li>";
+        $navigation.= "<li><a class=\"page-numbers\" href=\"".static::url('page',$curr_page)."\">$curr_page</a></li>";
       }
     }
     if($this->has_next()){
