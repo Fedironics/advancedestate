@@ -40,7 +40,7 @@ $page = new pagination(8,Blog::last_count());
 									</div>
 									<h2 class="post-title"><a href="<?php echo $blogpost->link(); ?>"><?php echo ucwords($blogpost->title) ; ?></a></h2>
 
-									<p><?php echo $blogpost->body ; ?> </p>
+									<p><?php echo $blogpost->body() ; ?> </p>
 
 									<div class="post-meta">
 										<ul class="meta">

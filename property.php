@@ -3,10 +3,12 @@ require_once("includes/initialize.php");
 if(!empty($_POST['rating'])){
 	require_once 'ajax/rater.php';
 }
-require_once("parts/header.php");
 $property=Property::find_by_id($_GET['property']);
 $property->get_details();
 $property->get_picture('',20);
+
+
+require_once("parts/header.php");
 ?>
 <!-- Single Property Container -->
 <section class="single-property-container">

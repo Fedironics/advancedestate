@@ -9,10 +9,13 @@ class Blog extends Item {
     return $admin;
   }
   public function link(){
-    return "blogpost.html";
+    return  Pagination::url('page',$this->id,'blogpost.php');
+
   }
   public function time(){
     return "10,3";
   }
-
+  public function body($strlen = 200){
+    return substr($this->body, 0,$strlen);
+  }
 }

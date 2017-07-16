@@ -63,7 +63,7 @@ require_once("parts/header.php");
             <div class="post-author">
               <h4>About author</h4>
               <div class="author">
-                <img src="img/blog-author-3.jpg" alt="author avatar" />
+                <img src="<?php echo $author_pix;?>" alt="<?php echo $author->name(); ?> avatar" />
                 <p><?php echo $author->name(); ?></p>
               </div>
 

@@ -1,7 +1,7 @@
 <?php
 require_once("includes/initialize.php");
 require_once("parts/header.php");
-$page = new Pagination(1,Agent::last_count());
+$page = new Pagination(5,Agent::last_count());
 ?>
 <!-- Agents Section -->
 <section class="agents-section has-padding">
@@ -99,7 +99,7 @@ echo $page->show_next();
 					echo $property->code_name();
 					echo "</p>
 
-					<span class=\"price\">\$$property->price</span>
+					<span class=\"price\">".$property->price()."</span>
 					</div>
 					</div>
 					</div>

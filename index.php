@@ -391,144 +391,49 @@ require_once "parts/header.php";
 						 ?>
 
 						<div class="row row-fit-10">
+							<?php
+							$blogpage = new Pagination(6,6);
+							$blogposts = Blog::select($blogpage->limit());
+							foreach ($blogposts as $blogpost) :
+								$author= User::find_by_id($blogpost->author_id);
+								$author_pix= $author->get_picture('author_small');
+								$blog_pix = $blogpost->get_picture('featured_post');
+								?>
+
 							<div class="col-md-12">
 								<div class="blog-post sticky">
 									<div class="post-body">
 										<div class="blog-post-meta">
 											<div class="post-cover">
-												<a href="blogpost.html">
-													<img src="img/featured-post-1.jpg" alt="featured blogpost cover" />
+												<a href="<?php echo $blogpost->link(); ?>">
+													<img src="<? echo $blog_pix; ?>" alt="featured blogpost cover" />
 												</a>
 											</div>
 
 											<div class="post-author">
 												<div class="image">
-													<img src="img/blog-author-1.jpg" alt="blog author" />
+													<img src="<?php echo $author_pix;?>" alt="blog author" />
 												</div>
 
-												<p>Robert Doe</p>
+												<p><?php echo $author->name();?></p>
 											</div>
 										</div>
-										<h2 class="post-title"><a href="blogpost.html">Blogpost 1</a></h2>
+										<h2 class="post-title"><a href="<?php echo $blogpost->link(); ?>"><?php echo $blogpost->title;?></a></h2>
 
-										<p>Duis vel eros mi. Nunc eu sem dolor. Nulla venenatis, augue at rhoncus tincidunt, nisi dolor fringilla nibh, sed tristicu.</p>
+										<p><?php echo $blogpost->body() ;?></p>
 
 										<div class="post-meta">
 											<ul class="meta">
-												<li class="date">11.3</li>
-												<li class="comments">&#40;2&#41;</li>
+												<li class="date"><?php echo $blogpost->time() ; ?></li>
+												<li class="comments"><?php echo $blogpost->count_comments() ; ?></li>
 											</ul>
 
-											<a class="post-link" href="blogpost.html">Read More</a>
+											<a class="post-link" href="<?php echo $blogpost->link(); ?>">Read More</a>
 										</div>
 									</div>
 								</div>
 							</div>
-
-							<div class="col-md-12">
-								<div class="blog-post">
-									<div class="post-body">
-										<div class="blog-post-meta">
-											<div class="post-cover">
-												<a href="blogpost.html">
-													<img src="img/featured-post-2.jpg" alt="featured blogpost cover" />
-												</a>
-											</div>
-
-											<div class="post-author">
-												<div class="image">
-													<img src="img/blog-author-2.jpg" alt="blog author" />
-												</div>
-
-												<p>Andrew Doe</p>
-											</div>
-										</div>
-
-										<h2 class="post-title"><a href="blogpost.html">Blogpost 2</a></h2>
-
-										<p>Duis vel eros mi. Nunc eu sem dolor. Nulla venenatis, augue at rhoncus tincidunt, nisi dolor fringilla nibh, sed tristicu.</p>
-
-										<div class="post-meta">
-											<ul class="meta">
-												<li class="date">11.3</li>
-												<li class="comments">&#40;2&#41;</li>
-											</ul>
-
-											<a class="post-link" href="blogpost.html">Read More</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-12">
-								<div class="blog-post">
-									<div class="post-body">
-										<div class="blog-post-meta">
-											<div class="post-cover">
-												<a href="blogpost.html">
-													<img src="img/featured-post-3.jpg" alt="featured blogpost cover" />
-												</a>
-											</div>
-
-											<div class="post-author">
-												<div class="image">
-													<img src="img/blog-author-3.jpg" alt="blog author" />
-												</div>
-
-												<p>Roberta Doe</p>
-											</div>
-										</div>
-
-										<h2 class="post-title"><a href="blogpost.html">Blogpost 3</a></h2>
-
-										<p>Duis vel eros mi. Nunc eu sem dolor. Nulla venenatis, augue at rhoncus tincidunt, nisi dolor fringilla nibh, sed tristicu.</p>
-
-										<div class="post-meta">
-											<ul class="meta">
-												<li class="date">11.3</li>
-												<li class="comments">&#40;2&#41;</li>
-											</ul>
-
-											<a class="post-link" href="blogpost.html">Read More</a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-12">
-								<div class="blog-post">
-									<div class="post-body">
-										<div class="blog-post-meta">
-											<div class="post-cover">
-												<a href="blogpost.html">
-													<img src="img/featured-post-4.jpg" alt="featured blogpost cover" />
-												</a>
-											</div>
-
-											<div class="post-author">
-												<div class="image">
-													<img src="img/blog-author-4.jpg" alt="blog author" />
-												</div>
-
-												<p>Anastasia Doe</p>
-											</div>
-										</div>
-
-										<h2 class="post-title"><a href="blogpost.html">Blogpost 4</a></h2>
-
-										<p>Duis vel eros mi. Nunc eu sem dolor. Nulla venenatis, augue at rhoncus tincidunt, nisi dolor fringilla nibh, sed tristicu.</p>
-
-										<div class="post-meta">
-											<ul class="meta">
-												<li class="date">11.3</li>
-												<li class="comments">&#40;2&#41;</li>
-											</ul>
-
-											<a class="post-link" href="blogpost.html">Read More</a>
-										</div>
-									</div>
-								</div>
-							</div>
+<?php  endforeach; ?>
 						</div>
 
 						<a class="button theme-button-2" href="blog.php">Go to blog</a>
