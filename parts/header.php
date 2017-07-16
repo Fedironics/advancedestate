@@ -158,6 +158,8 @@ require_once("includes/content.php");
 ";
 		}
 		else{
+			#cut out the form id login-form
+			#it might be a javascriipt problem
 			echo "
 				<!-- Login Form -->
 			<div class=\"login-form-popup\">
@@ -165,7 +167,7 @@ require_once("includes/content.php");
 					<div class=\"brand-wrapper\">
 						<img src=\"img/brand.png\" alt=\"login brand\" />
 					</div>
-					<form id=\"login-form\" action=\"process/accounts.php\" method=\"post\">
+					<form name=\"login_form\" action=\"process/accounts.php\" method=\"post\">
 						<input class=\"js-input\" name=\"email\" type=\"text\" placeholder=\"Email\" />
 						<input class=\"js-input\" name=\"password\" type=\"password\" placeholder=\"Password\" />
 						<input type=\"submit\" value=\"Login\" name=\"post\" class=\"submit-button\" />
